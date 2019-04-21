@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Auth;
 
 class UsersController extends Controller
 {
     public function show()
     {
+        dump(Auth::user() instanceof User ? Auth::user()->toArray() : null);
         return view('users.show');
     }
 
@@ -32,10 +34,6 @@ class UsersController extends Controller
             'password'      => bcrypt($request->password),
             'avatar'        => url('/default/avatar.jpg'),
         ]);
-        if (!$user)
-        {
-
-        }
         session()->flash('success', '注册成功，欢迎！');
         return redirect()->route('home');
     }
