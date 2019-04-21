@@ -11,4 +11,5 @@
 |
 */
 
+Route::get('/', 'UsersController@index')->name('home');
 Route::get('signup', 'UsersController@create')->name('signup');
